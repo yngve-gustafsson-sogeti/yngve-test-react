@@ -1,0 +1,53 @@
+{
+  "name": "@oneui/projects",
+  "version": "0.0.0",
+  "private": true,
+  "jest": {
+    "verbose": true
+  },
+  "devDependencies": {
+    "@babel/core": "7.14.3",
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-react": "7.13.13",
+    "babel-jest": "^27.1.0",
+    "babel-loader": "8.2.2",
+    "css-loader": "^5.2.7",
+    "css-minimizer-webpack-plugin": "^3.0.2",
+    "html-webpack-plugin": "5.3.1",
+    "jest": "^27.1.0",
+    "jest-cli": "^27.1.0",
+    "mini-css-extract-plugin": "^2.2.0",
+    "postcss": "^8.3.6",
+    "postcss-loader": "^6.1.1",
+    "postcss-preset-env": "^6.7.0",
+    "react-test-renderer": "^16.14.0",
+    "sass": "^1.38.2",
+    "sass-loader": "^12.1.0",
+    "serve": "11.3.2",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.51.1",
+    "webpack-cli": "4.7.2",
+    "webpack-dev-server": "3.11.2"
+  },
+  "scripts": {
+    "start": "webpack-cli serve --mode development --config webpack.config.dev.js",
+    "build": "webpack --mode production",
+    "buildDev": "webpack --mode development --config webpack.config.dev.js",
+    "buildProd": "webpack --mode production --config webpack.config.prod.js",
+    "buildTest": "webpack --mode production --config webpack.config.tst.js",
+    "serve": "serve dist -p 3001",
+    "clean": "rm -rf dist",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "@ingka/core": "^18.1.1",
+    "date-fns": "^2.23.0",
+    "query-string": "^7.0.1",
+    "react": "^16.13.0",
+    "react-datepicker": "^4.2.1",
+    "react-dom": "^16.13.0",
+    "react-router-dom": "^5.2.1",
+    "regenerator-runtime": "^0.13.9"
+  }
+}

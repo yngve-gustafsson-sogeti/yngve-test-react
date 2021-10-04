@@ -1,0 +1,1 @@
+export const API_URL = "https://app-ordercreate-projectservice-test.azurewebsites.net";

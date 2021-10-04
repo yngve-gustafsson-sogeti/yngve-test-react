@@ -1,0 +1,22 @@
+.datepicker {
+    display: block;
+    margin-bottom: 1rem;
+
+    label {
+        display: block;
+        width: 100%;
+        font-size: 1rem;
+    }
+
+    .react-datepicker-wrapper {
+        width: 100%;
+    }
+
+    input[type="text"] {
+
+    
+        border-width: 0 0 1px 0;
+        width: 100%;
+        border-color: #929292;
+    }
+}

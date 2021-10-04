@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1630401498081" clover="3.2.0">
+  <project timestamp="1630401498081" name="All files">
+    <metrics statements="24" coveredstatements="13" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="2" elements="41" coveredelements="19" complexity="0" loc="24" ncloc="24" packages="1" files="1" classes="1"/>
+    <file name="functions.js" path="C:\projects\ikea\oneui\projects\src\functions\functions.js">
+      <metrics statements="24" coveredstatements="13" conditionals="10" coveredconditionals="4" methods="7" coveredmethods="2"/>
+      <line num="3" count="1" type="cond" truecount="0" falsecount="1"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="12" count="0" type="stmt"/>
+      <line num="18" count="0" type="stmt"/>
+      <line num="27" count="0" type="stmt"/>
+      <line num="31" count="0" type="stmt"/>
+      <line num="40" count="0" type="stmt"/>
+      <line num="45" count="1" type="stmt"/>
+      <line num="46" count="1" type="stmt"/>
+      <line num="47" count="1" type="stmt"/>
+      <line num="48" count="1" type="stmt"/>
+      <line num="49" count="1" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="53" count="1" type="stmt"/>
+      <line num="54" count="1" type="cond" truecount="4" falsecount="1"/>
+      <line num="55" count="0" type="stmt"/>
+      <line num="58" count="1" type="stmt"/>
+      <line num="59" count="1" type="stmt"/>
+      <line num="63" count="1" type="stmt"/>
+      <line num="64" count="0" type="stmt"/>
+      <line num="68" count="1" type="stmt"/>
+      <line num="69" count="0" type="stmt"/>
+      <line num="70" count="0" type="stmt"/>
+      <line num="71" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

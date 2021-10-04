@@ -1,0 +1,26 @@
+@use "@ingka/variables/colour" as colours;
+@use "react-datepicker/src/stylesheets/datepicker";
+
+.modalnewproject {
+    .prompt {
+        @media screen and (min-width: 600px) {
+            min-width: 500px;
+        }
+    }
+
+    .prompt__content {
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding-bottom: 50px;
+    }
+
+    .form-field {
+        .inline-text {
+            color: colours.$colour-feedback-error;
+        }
+    }
+
+    .checkbox {
+        margin-top: 2rem;
+    }
+}

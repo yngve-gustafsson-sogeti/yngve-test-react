@@ -1,0 +1,172 @@
+@use '@ingka/core/style' as core;
+@use "@ingka/variables/colour" as colours;
+@use "@ingka/variables/design-tokens" as designcolours;
+
+//For the search
+//@use "@ingka/svg-icon/style" as svgicon;
+//@use "@ingka/button/style" as button;
+//@use "@ingka/search/style" as search;
+//@use "@ingka/focus/style" as focus;
+
+@use "./datepicker";
+
+body {
+    font-family: "Noto Sans", "Noto IKEA";
+}
+
+.faked-link {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.page-projects {
+
+    .action-list {
+        margin-top: 1rem;
+    }
+
+    .action-list-item {
+        border: 1px solid colours.$colour-neutral-grey-200;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+
+        &:hover {
+            border-color: colours.$colour-neutral-grey-900;
+        }
+
+
+        &:nth-child(2n){
+            .svg-icon {
+                fill: colours.$colour-brand-yellow;
+            }
+        }
+
+        &:nth-child(3n){
+            .svg-icon {
+                fill: designcolours.$colour-brand-red;
+            }
+        }
+
+        &:nth-child(4n){
+            .svg-icon {
+                fill: #CA5008;
+            }
+        }
+
+        .svg-icon {
+            height: 48px;
+            width: 48px;
+            fill: colours.$colour-brand-blue;
+        }
+
+        .action-list-item__action--inset {
+            padding: 1rem 1rem 1rem 1.5rem;
+        }
+    }
+}
+
+.header-projects {
+    display: flex;
+    height: 70px;
+    justify-content: center;
+
+    .col-logo {
+        flex: 0 0 280px;
+        border-right: 1px solid colours.$colour-neutral-grey-200;
+        align-self: center;
+        display: flex;
+        padding-left: 24px;
+        height: 100%;
+
+        h2 {
+            align-self: center;
+        }
+    }
+
+    .col-nav {
+        flex: 1 1 auto;
+        align-self: center;
+        padding-left: 150px;
+    }
+
+    .col-search {
+        flex: 1 1 auto;
+        align-self: center;
+        .search__input {
+            height: 2.5rem;
+        }
+    }
+
+    .col-toolbar {
+        flex: 1 1 auto;
+    }
+
+    .toolbar {
+        display: flex;
+        list-style: none;
+        align-items: center;
+        height: 100%;
+
+        &__item {
+            cursor: pointer;
+            flex: 0 1 auto;
+            padding: 0 12px;
+        }
+    }
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    height: 100%;
+
+    &__item {
+        cursor: pointer;
+        flex: 0 1 auto;
+        display: flex;
+        height: 100%;
+        padding: 0;
+
+        &__link {
+            text-align: center;
+            align-self: center;
+            flex: 1 1 auto;
+            display: flex;
+            height: 100%;
+            padding: 0 12px;
+            color: #767676;
+            font-weight: 700;
+            text-decoration: none;
+
+            &:hover {
+              color: colours.$colour-neutral-grey-900;  
+            }
+            
+            &__text {
+                height: 100%;
+                display: flex;
+                position: relative;
+                align-items: center;
+            }
+
+            &.active {
+                position: relative;
+                color: colours.$colour-neutral-grey-900;
+
+                .nav__item__link__text {
+                    &:after {
+                        position: absolute;
+                        content: "";
+                        width: 100%;
+                        height: 3px;
+                        background-color: colours.$colour-brand-blue;
+                        bottom: 0;
+                    }
+                }
+            }            
+        }
+    }
+}

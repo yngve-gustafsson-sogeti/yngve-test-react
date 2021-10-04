@@ -1,0 +1,10 @@
+node_modules
+dist
+hushalla/coverage/
+hushalla/coverage/lcov-report/
+projects/coverage/
+projects/coverage/lcov-report/
+yarn-error.log
+hushalla/junit.xml
+junit.xml
+hushalla/junit.xml

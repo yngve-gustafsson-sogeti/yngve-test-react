@@ -14,7 +14,7 @@ steps:
   inputs:
     SonarCloud: 'sonarCloudTest'
     organization: 'pam-test'
-    scannerMode: Other
+    scannerMode: CLI
     projectKey: 'yngve-test-react'
     projectName: 'yngve-test-react'
 - task: NodeTool@0

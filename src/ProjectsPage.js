@@ -7,9 +7,11 @@ import ModalNewProject from "./components/ModalNewProject";
 import ModalHfb from './components/ModalHfb';
 import ModalProfile from './components/ModalProfile';
 import {getData, getMonth, getYear} from "./functions/functions";
-import { API_URL } from './constants';
+import { API_URL, API_GET_ALL_PROJECTS, API_GET_HFB } from './constants';
+import Tabs, { Tab, TabPanel } from "@ingka/tabs";
 
 import "./scss/style.scss";
+import "./scss/projectspage.scss";
 
 function initSetHfbId(){
   let hfb = localStorage.getItem("hfb");
@@ -20,7 +22,7 @@ function initSetHfbId(){
 }
 
 
-const HomePage = () => { 
+const ProjectsPage = () => { 
   const [projects, setProjects] = useState([]);
   const [showNewProjectModal, setShowNewProjectModal] = useState(false);
   const [showHsbModal, setShowHsbModal] = useState(false);
@@ -39,7 +41,7 @@ const HomePage = () => {
 
   const getProjects = (id) => {
     if(hfbId !== null || hfbId !== undefined) { 
-      getData(`${API_URL}/content-planning-projects/projects/homefurnishingbusinesses/${id}`)
+      getData(`${API_URL}${API_GET_ALL_PROJECTS}${id}`)
       .then(response => response.json())
         .then(data => {
           if(data._embedded !== undefined) {
@@ -59,7 +61,7 @@ const HomePage = () => {
   //Get the whole HFB-object
   const getHfb = (id) => {
     if(hfbId !== null || hfbId !== undefined) { 
-      getData(`${API_URL}/content-planning-projects/homefurnishingbusinesses/${id}`)
+      getData(`${API_URL}${API_GET_HFB}${id}`)
       .then(response => response.json())
         .then(data => {
             console.log('HFB:', data);
@@ -143,38 +145,73 @@ const HomePage = () => {
     homeFurnishingBusinessId = "0" + homeFurnishingBusinessId;
   }
 
+  const tabs = [
+    <Tab 
+      key='tab-projects' 
+      text={"Projects"} 
+      tabPanelId="tab_projects" 
+    />,
+    <Tab 
+      key='tab-total'
+      text={"Total"} 
+      active 
+      tabPanelId="tab_total" 
+    />,
+  ];
+
+  const projectsTabPanel = () => {
+    return(
+      <TabPanel key='tab-projects' tabPanelId="tab_projects">
+        <Projectsheader newProject={openNewProjectModal} openHsbModal={openHsbModal} openProfileModal={openProfileModal} hfbId={homeFurnishingBusinessId} hfbName={homeFurnishingBusinessName}/>
+          <ActionList>
+            {projects.map(item => {
+              return (
+                <ActionListItem
+                  onClick={() => openProject(`/budget/${item.projectId}`)}
+                  inset
+                  ssrIcon = {circleFilled}
+                  label={item.projectName}
+                  caption={getMonth(item.saleStartDate) +" "+ getYear(item.saleStartDate)}
+                  key={item.projectId}
+                />
+              )
+            })}
+          </ActionList>
+      </TabPanel>
+    );
+  }
+
+  const totalTabPanel = () => {
+    return(
+      <TabPanel
+        key='tab-total'
+        tabPanelId="tab_total"
+        title="Total"
+        text="Lorem ipsum dolor..."
+      />
+    );
+  }
+
+  const tabPanels = [projectsTabPanel(), totalTabPanel()];
 
   return (
     <div className="page-projects">
-      <Projectsheader newProject={openNewProjectModal} openHsbModal={openHsbModal} openProfileModal={openProfileModal} />
+      <div className="page-container budget">
+        <div className="page-container__inner">
+          <div className="page-container__main">
+            <Tabs tabs={tabs} tabPanels={tabPanels} defaultActiveTab="tab_projects" />
+          </div>
+        </div>
+      </div>
+
       <ModalNewProject isModalOpen={showNewProjectModal} closeModal={closeNewProjectModal} addProject={addProject} hfbId={hfbId} type={"new"} />
       <ModalHfb isModalOpen={showHsbModal} closeModal={closeHsbModal} setSelectedHfb={setSelectedHfb} />
       <ModalProfile isModalOpen={showProfileModal} closeModal={closeProfileModal} />
-
-      <main className="page-container">
-        <div className="page-container__inner">
-          <div className="page-container__main">
-            <h3 className="faked-link" onClick={setShowHsbModal}><a>{homeFurnishingBusinessId} - {homeFurnishingBusinessName}</a></h3>
-            <ActionList>
-              {projects.map(item => {
-                return (
-                  <ActionListItem
-                    onClick={() => openProject(`/budget/${item.projectId}`)}
-                    inset
-                    ssrIcon = {circleFilled}
-                    label={item.projectName}
-                    caption={getMonth(item.saleStartDate) +" "+ getYear(item.saleStartDate)}
-                    key={item.projectId}
-                  />
-                )
-              })}
-            </ActionList>
-          </div>
-        </div>
-        {/* <Link to="/budget/2">Budget</Link> <Link to="/about">About</Link> */}
-      </main>
     </div>
   );
 };
 
-export default HomePage;
+export default ProjectsPage;
+
+
+//<h3 className="faked-link" onClick={setShowHsbModal}><a>{homeFurnishingBusinessId} - {homeFurnishingBusinessName}</a></h3>

@@ -2,16 +2,15 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const path = require("path");
 const deps = require("./package.json").dependencies;
 const Dotenv = require("dotenv-webpack");
 
-module.exports = () => {
-  console.log("PROJECTS is using WEBPACK.CONFIG.PROD.JS");
+module.exports = (env, options) => {
+  console.log("PROJECTS is using WEBPACK.CONFIG.STAGE.JS");
   return {
     entry: "./src/index",
-    mode: "production",
+    mode: "development",
     devServer: {
       contentBase: path.join(__dirname, "dist"),
       port: 3001,
@@ -43,7 +42,7 @@ module.exports = () => {
             "css-loader",
             {
               loader: "postcss-loader",
-              options: { sourceMap: false },
+              options: { sourceMap: true },
             },
             "sass-loader",
           ],
@@ -51,21 +50,20 @@ module.exports = () => {
       ],
     },
     plugins: [
-      new Dotenv({ path: "./.env.prod" }),
+      new Dotenv({ path: "./.env.stage" }),
       new MiniCssExtractPlugin(),
       new ModuleFederationPlugin({
         name: "projects",
         filename: "remoteEntry.js",
         remotes: {
           hushalla:
-            "hushalla@https://app-pam-hushallareact-test.azurewebsites.net/remoteEntry.js",
+            "hushalla@https://app-pam-hushallareact-ase-stage.ase-pam.appserviceenvironment.net",
         },
         exposes: {
           "./Navigation": "./src/Navigation",
           "./Header": "./src/components/Header",
           "./routes": "./src/routes",
           "./ModalNewProject": "./src/components/ModalNewProject",
-          "./ProjectsPage": "./src/ProjectsPage",
         },
         shared: {
           ...deps,
@@ -85,8 +83,5 @@ module.exports = () => {
         template: "./public/index.html",
       }),
     ],
-    optimization: {
-      minimizer: ["...", new CssMinimizerPlugin()],
-    },
   };
 };

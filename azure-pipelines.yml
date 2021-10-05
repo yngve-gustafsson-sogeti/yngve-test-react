@@ -28,7 +28,7 @@ steps:
 
 - script: |
     npm install
-    npm run build
+    npm run buildTest
     npm run lint
     if [ $? -ne 0 ]; then
         exit 1

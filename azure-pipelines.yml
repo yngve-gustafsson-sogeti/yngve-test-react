@@ -25,15 +25,44 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'install -g npm@latest'
+    workingDir: './'
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'install -g yarn'
+    workingDir: './'
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'install webpack-cli'
+    workingDir: './'
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'install -g lerna'
+    workingDir: './'
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: './'
+- task: Npm@1
+  inputs:
+    command: custom
+    customCommand: 'run buildTest'
+    workingDir: './'
 
-- script: |
-    npm install
-    npm run buildTest
-    npm run lint
-    if [ $? -ne 0 ]; then
-        exit 1
-    fi
-  displayName: 'npm install and build'
+# - script: |
+#     npm install
+#     npm run buildTest
+#     npm run lint
+#     if [ $? -ne 0 ]; then
+#         exit 1
+#     fi
+#   displayName: 'npm install and build'
   
 - task: SonarCloudAnalyze@1
 - task: SonarCloudPublish@1

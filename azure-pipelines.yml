@@ -29,7 +29,7 @@ steps:
 - script: |
     npm install
     npm run build
-    eslint src
+    npm run lint
     if [ $? -ne 0 ]; then
         exit 1
     fi

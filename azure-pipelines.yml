@@ -29,6 +29,10 @@ steps:
 - script: |
     npm install
     npm run build
+    eslint src
+    if [ $? -ne 0 ]; then
+        exit 1
+    fi
   displayName: 'npm install and build'
   
 - task: SonarCloudAnalyze@1

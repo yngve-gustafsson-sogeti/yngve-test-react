@@ -23,11 +23,11 @@ steps:
     cliProjectKey: 'yngve-test-react'
     cliProjectName: 'yngve-test-react'
 - task: NodeTool@0
+  displayName: 'Use Node 14.17.4'
   inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+    versionSpec: 14.17.4
 - task: Npm@1
-  displayName: 'install - g npm@latest'
+  displayName: 'install -g npm@latest'
   inputs:
     command: custom
     customCommand: 'install -g npm@latest'
